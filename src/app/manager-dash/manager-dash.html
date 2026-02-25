@@ -1,0 +1,22 @@
+<h1>Manager Dashboard</h1>
+<h2>New Users List</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Employee ID</th>
+        <th>Assign Role</th>
+    </tr>
+
+    <tr *ngFor="let user of users">
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.id}}</td>
+        <td>
+            <!-- pass Mongo _id and send uppercase role expected by backend -->
+            <button (click)="assignRole(user._id, 'MENTOR')">Mentor</button>
+            <button (click)="assignRole(user._id, 'MENTEE')">Mentee</button>
+        </td>
+    </tr>
+</table>
