@@ -25,9 +25,8 @@ const userDetailsSchema= new mongoose.Schema({
     },
     role:{
         type:String,
-        required:true,
         enum:['mentee','mentor','manager'],
-        default:'mentee'
+        default:null
     },
     techstack:{
         type:String,
