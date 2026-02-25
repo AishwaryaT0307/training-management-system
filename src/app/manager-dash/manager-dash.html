@@ -14,9 +14,9 @@
         <td>{{user.email}}</td>
         <td>{{user.id}}</td>
         <td>
-            <!-- pass Mongo _id and send uppercase role expected by backend -->
-            <button (click)="assignRole(user._id, 'MENTOR')">Mentor</button>
-            <button (click)="assignRole(user._id, 'MENTEE')">Mentee</button>
+            <!-- pass Mongo _id and send lowercase role -->
+            <button (click)="assignRole(user._id, 'mentor')">Mentor</button>
+            <button (click)="assignRole(user._id, 'mentee')">Mentee</button>
         </td>
     </tr>
 </table>
