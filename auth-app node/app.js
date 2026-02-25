@@ -56,8 +56,10 @@ app.post("/api/logout",(req,res)=>{
 //Role-based access control
 if (checkRole) app.get("/api/check", checkRole);
 
+//Get users without roles
 if (noroleuser) app.get("/api/getNoRoleUsers", noroleuser);
 
+//Update user role
 if (updateRole) app.patch("/api/updateRole", updateRole);
 
 const PORT = process.env.PORT || 5000;
