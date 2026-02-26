@@ -62,5 +62,11 @@ if (noroleuser) app.get("/api/getNoRoleUsers", noroleuser);
 //Update user role
 if (updateRole) app.patch("/api/updateRole", updateRole);
 
+//get all mentees
+app.get("/api/mentees", getMentees);
+
+//Assign Tech Stack to mentees
+app.patch("/api/assignTechStack", assignTechStack);
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
