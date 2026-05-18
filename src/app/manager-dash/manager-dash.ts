@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from '../services/auth-service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manager-dash',
@@ -15,19 +15,19 @@ export class ManagerDash {
 
   users :any[]= [];
   mentees:any[]=[];
-  
-  constructor(private service: AuthService, private cdr: ChangeDetectorRef) {
-    this.loadUsers();
+  mentors:any[]=[];
+  constructor(private service: AuthService, private cdr: ChangeDetectorRef, private router: Router) {
+   this.loadUsers();
 
     this.loadMentees();
-    console.log('ManagerDash component initialized');
+   this.getMentors();
   }
 
   ngOnInit() {
-    console.log('ManagerDash ngOnInit called');
-    this.loadUsers();
+    
+   // this.loadUsers();
 
-    this.loadMentees();
+    //this.loadMentees();
   }
 
 
@@ -58,7 +58,10 @@ export class ManagerDash {
       error: (err: any) => {
         console.error('Error assigning role:', err);
       }
+
     });
+     this.loadMentees();
+   this.getMentors();
   }
 
   loadMentees(){
@@ -66,6 +69,8 @@ export class ManagerDash {
       next: (res:any)=>{
         this.mentees = res.data || [];
         console.log('Mentees loaded:', this.mentees);
+        this.cdr.detectChanges();
+     
       },
       error: (err: any) => {
         console.error('Error loading mentees:', err);
@@ -73,9 +78,9 @@ export class ManagerDash {
     })
   }
 
-  updateTechStack(userId:string, techStack: string){
-    console.log('Updating tech stack for user:', userId, 'to:', techStack);
-    this.service.assignTechStack(userId, techStack).subscribe({
+  updateTechStack(userId:string, techstack: string){
+    console.log('Updating tech stack for user:', userId, 'to:', techstack);
+    this.service.assignTechStack(userId, techstack).subscribe({
       next: () => {
         alert('Tech stack updated successfully');
         this.loadMentees(); // Refresh the mentees list to reflect changes
@@ -84,5 +89,46 @@ export class ManagerDash {
         console.error('Error updating tech stack:', err);
       }
     });
+  }
+  
+  getMentors(){
+    this.service.getMentors().subscribe({
+      next: (res:any)=>{
+        console.log('Mentors response:', res);
+        this.mentors = res.data || [];
+        console.log('Mentors loaded:', this.mentors);
+        this.cdr.detectChanges();
+      },
+      error: (err: any) => {
+        console.error('Error loading mentors:', err);
+      }
+    })
+  }
+
+  assignMentor(menteeId:string, mentorId:string){
+    console.log('Assigning mentor:', mentorId, 'to mentee:', menteeId);
+    this.service.assignMentor(menteeId, mentorId).subscribe({
+      next: () => {
+        alert('Mentor assigned successfully');
+        this.loadMentees(); // Refresh the mentees list to reflect changes
+      },
+      error: (err: any) => {
+        console.error('Error assigning mentor:', err);
+      }
+    });
+  }
+  viewTrainingPlan(menteeId:string){
+    this.router.navigate(['/training-plan', menteeId]);
+
+  }
+
+   logout() {
+    this.service.logout().subscribe((next)=>{
+      console.log("Logged out successfully");
+      this.router.navigate(['/login']);
+     },(error)=>{
+      console.error("Logout failed", error);
+      this.router.navigate(['/login']);
+     });
   }
 }

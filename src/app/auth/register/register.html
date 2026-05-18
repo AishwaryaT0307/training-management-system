@@ -1,0 +1,51 @@
+<div class="auth-container">
+    <div class="auth-box">
+        <h2> Create Account </h2>
+        <p class="subtitle">Join us and get started</p>
+        <form [formGroup]="registerForm" (ngSubmit)="onsubmit()">
+            <div class="form-group">
+                <input type="text" formControlName="name" placeholder="Full Name" required/>
+                <small class="error" *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+                    Name is required.
+                </small>
+            </div>
+            <div class="form-group">
+                <input type="text" formControlName="id" placeholder=" Employee ID" required/>
+                <small class="error" *ngIf="registerForm.get('id')?.invalid && registerForm.get('id')?.touched">
+                    ID is required.
+                </small>
+            </div>
+            <div class="form-group">
+                <input type="email" formControlName="email" placeholder="Email" required/>
+                <small class="error" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                    Valid email is required.
+                </small>
+            </div>
+            <div class="form-group">
+               <input type="password" formControlName="password" placeholder="Password" />
+
+                <small class="error" *ngIf="registerForm.get('password')?.touched">
+
+                    <span *ngIf="registerForm.get('password')?.errors?.['required']">
+                        Password is required.
+                </span>
+
+                 <span *ngIf="registerForm.get('password')?.errors?.['minlength']">
+                        Password must be at least 8 characters long.
+                </span>
+
+                 <span *ngIf="registerForm.get('password')?.errors?.['pattern']">
+                      Password must contain at least 1 uppercase letter, 1 number, and 1 special character.
+                    </span>
+
+                </small>
+
+            </div>
+            <button type="submit" class="btn-primary" [disabled]="registerForm.invalid">Register</button>
+
+            <p class="footer-text">
+                Already have an account? <a routerLink="/login">Login here</a>
+            </p>
+        </form>
+    </div>
+</div>

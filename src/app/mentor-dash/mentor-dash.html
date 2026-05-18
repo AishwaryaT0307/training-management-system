@@ -1,0 +1,29 @@
+<h1>Mentor Dashboard</h1>
+<div *ngIf="mentees.length > 0; else noMentees">
+  <h2>Your Mentees:</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mentee of mentees">
+        <td>{{ mentee.name }}</td>
+        <td>{{ mentee.email }}</td>
+        <td>
+          <button (click)="viewTrainingPlan(mentee._id || mentee.id)" class="view-plan-btn">View Training Plan</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #noMentees>
+  <p>You currently have no mentees assigned.</p>
+</ng-template>
+<div class="logout-container">
+  <button (click)="logout()" class="logout-btn">Logout</button>
+</div>
+

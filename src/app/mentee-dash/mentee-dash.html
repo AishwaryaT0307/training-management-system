@@ -1,0 +1,25 @@
+<h1>Mentee Dashboard</h1>
+<h2>Welcome ,{{ menteeName }}</h2>
+<h1>Personal Details</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <td>{{ menteeName }}</td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td>{{ menteeEmail }}</td>
+  </tr>
+  <tr>
+    <th>Assigned Mentor</th>
+    <td>{{ mentorName }}</td>
+  </tr>
+  <tr>
+    <th>Assigned Techstack</th>
+    <td>{{ techstack }}</td>
+  </tr>
+  <tr>
+    <th>Training Plan</th>
+    <td><button (click)="gotoTrainingPlan(menteeId)" class="view-plan-btn">View Training Plan</button></td>
+  </tr>
+</table>

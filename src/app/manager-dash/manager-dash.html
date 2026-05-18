@@ -1,22 +1,79 @@
-<h1>Manager Dashboard</h1>
-<h2>New Users List</h2>
+<ng-container>
+
+     <h1 class="dashboard-title">Manager Dashboard</h1>
+
+       
+    <h2>New Users List</h2>
+
+   <table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Employee ID</th>
+    <th>Assign Role</th>
+  </tr>
+
+
+  <tr *ngIf="users.length === 0">
+    <td colspan="4">No New Users Yet.....</td>
+  </tr>
+
+
+  <tr *ngFor="let user of users">
+    <td>{{ user?.name }}</td>
+    <td>{{ user?.email }}</td>
+    <td>{{ user?.id }}</td>
+    <td>
+      <button (click)="assignRole(user._id, 'mentor')">Mentor</button>
+      <button (click)="assignRole(user._id, 'mentee')">Mentee</button>
+    </td>
+  </tr>
+</table>
+
+<h2>All Mentees List</h2>  
+
 
 <table>
     <tr>
         <th>Name</th>
         <th>Email</th>
-        <th>Employee ID</th>
-        <th>Assign Role</th>
+        <th>Current Tech Stack</th>
+        <th>Current Mentor</th>
+        <th>Assign Tech Stack</th>
+        <th>Assign Mentor</th>
+        <th>View Training Plan</th>
     </tr>
-
-    <tr *ngFor="let user of users">
-        <td>{{user.name}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.id}}</td>
+    
+    <tr *ngFor="let mentee of mentees">
+        <td>{{mentee.name}}</td>
+        <td>{{mentee.email}}</td>
+        <td>{{mentee.techstack || 'Not Assigned'}}</td>
+        <td>{{mentee.mentorId || 'Not Assigned'}}</td>
         <td>
-            <!-- pass Mongo _id and send lowercase role -->
-            <button (click)="assignRole(user._id, 'mentor')">Mentor</button>
-            <button (click)="assignRole(user._id, 'mentee')">Mentee</button>
+            <input #techInput type="text" placeholder="Enter Tech Stack">
+           
+            <button (click)="updateTechStack(mentee._id, techInput.value)">
+                Assign Tech Stack
+            </button>
+        </td>
+        <td>
+            <select #mentorSelect>
+                <option value="" disabled selected>Select Mentor</option>
+                <option *ngFor="let mentor of mentors" [value]="mentor._id">
+                    {{mentor.name}}
+                </option>
+            </select>
+            <button (click)="assignMentor(mentee._id, mentorSelect.value)">
+                Assign Mentor
+            </button>
+        </td>
+        <td>
+            <button (click)="viewTrainingPlan(mentee._id)">
+                View Training Plan
+            </button>
         </td>
     </tr>
 </table>
+<button class="logout-btn" (click)="logout()">Logout</button>
+</ng-container>
+

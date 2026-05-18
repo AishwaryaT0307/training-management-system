@@ -1,0 +1,163 @@
+/* Page Layout */
+ng-container {
+  display: block;
+  padding: 30px;
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-title{
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.logout-btn {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.logout-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+/* Headings */
+h1 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #34495e;
+  border-left: 4px solid #3498db;
+  padding-left: 10px;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Table Header */
+th {
+  background-color: #3498db;
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Table Cells */
+td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+/* Zebra Striping */
+tr:nth-child(even) {
+  background-color: #f9fbfd;
+}
+
+/* Hover Effect */
+tr:hover {
+  background-color: #eef6ff;
+  transition: 0.2s ease-in-out;
+}
+
+/* Buttons */
+button {
+  padding: 6px 12px;
+  margin: 4px 4px 4px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+/* Mentor Button */
+button:nth-child(1) {
+  background-color: #2ecc71;
+  color: white;
+}
+
+button:nth-child(1):hover {
+  background-color: #27ae60;
+}
+
+/* Mentee Button */
+button:nth-child(2) {
+  background-color: #9b59b6;
+  color: white;
+}
+
+button:nth-child(2):hover {
+  background-color: #8e44ad;
+}
+
+/* Assign Buttons */
+td button {
+  background-color: #3498db;
+  color: white;
+}
+
+td button:hover {
+  background-color: #2980b9;
+}
+
+/* Input Styling */
+input[type="text"] {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  margin-right: 6px;
+  font-size: 13px;
+}
+
+input[type="text"]:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+/* Select Dropdown */
+select {
+  padding: 6px 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-right: 6px;
+  font-size: 13px;
+  outline: none;
+}
+
+select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+/* Loading Row */
+td[colspan] {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+}
